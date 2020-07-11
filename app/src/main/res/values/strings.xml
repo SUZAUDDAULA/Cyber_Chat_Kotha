@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Cyber Chat</string>
+    <string name="message_box">Cyber Chat</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="sign_in_to_continue">Sign in to continue</string>
+    <string name="s_i_g_n_i_n">S I G N I N</string>
+    <string name="sign_up_for_an_account">SIGN UP FOR AN ACCOUNT?</string>
+    <string name="password">Password</string>
+    <string name="user_name">User Name</string>
+    <string name="field_null_error">Field Can not be empty</string>
+    <string name="select_option">Select One</string>
+    <string name="remember_password">Remember Password</string>
+
+    <string name="entry_code">Data compilation completed</string>
+    <string name="entry_code1">Save the lost and found code</string>
+    <string name="entry_code2">Your application has been successfully accepted, please wait for approval</string>
+    <string name="entry_code3">Contact us at (01737366028) for any information regarding the app</string>
+    <string name="thanks">Thanks</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

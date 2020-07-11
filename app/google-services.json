@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "495765071379",
+    "firebase_url": "https://cchat-515ee.firebaseio.com",
+    "project_id": "cchat-515ee",
+    "storage_bucket": "cchat-515ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495765071379:android:d9f5369cd93046bda141e6",
+        "android_client_info": {
+          "package_name": "com.opus_bd.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495765071379-ju76rjao57degvu8s1uackpg6i2fhg97.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3q6jpvN9VECcJLMTnlVgdeVFTSm0qX-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495765071379-ju76rjao57degvu8s1uackpg6i2fhg97.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

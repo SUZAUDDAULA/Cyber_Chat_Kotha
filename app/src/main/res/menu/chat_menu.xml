@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/itemCall"
+        android:icon="@drawable/ic_action_call"
+        android:orderInCategory="100"
+        android:title="Call"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/itemVideo"
+        android:icon="@drawable/ic_action_video"
+        android:orderInCategory="100"
+        android:title="Video"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/itemNewGroup"
+        android:title="New Group" />
+    <item
+        android:id="@+id/itemSetting"
+        android:title="Setting" />
+    <item
+        android:id="@+id/itemLogOut"
+        android:title="Logout" />
+</menu>

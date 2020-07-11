@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp">
+
+    <include
+        android:id="@+id/llStepper"
+        layout="@layout/registration_progess_steper"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/actionBarSize"
+        app:layout_constraintTop_toBottomOf="@id/llStepper"
+        tools:context=".Activity.LOGREG.RegistrationActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/textViewOTP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:gravity="center"
+                android:text="Registration Process"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="24dp" />
+            <!-- Reg Layout-->
+
+            <LinearLayout
+                android:id="@+id/llReg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewOTP">
+
+
+
+                <LinearLayout
+                    android:id="@+id/llRegInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+                        <LinearLayout
+                            android:id="@+id/llPP"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <com.mikhaellopez.circularimageview.CircularImageView
+                                android:id="@+id/ivProfilePic"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:src="@drawable/ic_human_db"
+                                android:foregroundGravity="center_vertical"/>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/llPP"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_below="@+id/ivProfilePic"
+                                android:text="Photo"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rrNAME"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white">
+
+                        <ImageView
+                            android:id="@+id/ivNAME"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@color/colorPrimary"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_human_db" />
+
+                        <View
+                            android:id="@+id/vNAME"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toRightOf="@id/ivNAME"
+                            android:background="@color/colorPrimary"
+                            android:rotation="45" />
+
+                        <!--app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"-->
+
+                        <EditText
+                            android:id="@+id/etNAME"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_toRightOf="@id/vNAME"
+                            android:background="@android:color/white"
+                            android:hint="Name"
+                            android:paddingStart="10dp"
+                            android:paddingLeft="10dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rrBPNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white">
+
+                        <ImageView
+                            android:id="@+id/ivBPNo"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@color/colorPrimary"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_nid" />
+
+                        <View
+                            android:id="@+id/vBPNo"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toRightOf="@id/ivBPNo"
+                            android:background="@color/colorPrimary"
+                            android:rotation="45" />
+
+                        <!--app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"-->
+
+                        <EditText
+                            android:id="@+id/etBPNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_toRightOf="@id/vBPNo"
+                            android:background="@android:color/white"
+                            android:hint="BP No"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:paddingStart="10dp"
+                            android:paddingLeft="10dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rrUnit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white">
+
+                        <ImageView
+                            android:id="@+id/ivUnit"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@color/colorPrimary"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_human_db" />
+
+                        <View
+                            android:id="@+id/vUnit"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toRightOf="@id/ivUnit"
+                            android:background="@color/colorPrimary"
+                            android:rotation="45" />
+
+                        <!--app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"-->
+
+                        <Spinner
+                            android:id="@+id/spnUnit"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_toRightOf="@id/vUnit"
+                            android:background="@android:color/white"
+                            android:paddingStart="10dp"
+                            android:paddingLeft="10dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rrSubUnit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white">
+
+                        <ImageView
+                            android:id="@+id/ivSubUnit"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@color/colorPrimary"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_human_db" />
+
+                        <View
+                            android:id="@+id/vSubUnit"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toRightOf="@id/ivSubUnit"
+                            android:background="@color/colorPrimary"
+                            android:rotation="45" />
+
+                        <!--app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"-->
+
+                        <Spinner
+                            android:id="@+id/spnSubUnit"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_toRightOf="@id/vSubUnit"
+                            android:background="@android:color/white"
+                            android:paddingStart="10dp"
+                            android:paddingLeft="10dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rrDesignation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white">
+
+                        <ImageView
+                            android:id="@+id/ivDesignation"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@color/colorPrimary"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_human_db" />
+
+                        <View
+                            android:id="@+id/vDesignation"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toRightOf="@id/ivDesignation"
+                            android:background="@color/colorPrimary"
+                            android:rotation="45" />
+
+                        <Spinner
+                            android:id="@+id/spnDesignation"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_toRightOf="@id/vDesignation"
+                            android:background="@android:color/white"
+                            android:paddingStart="10dp"
+                            android:paddingLeft="10dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rrEMAILID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white">
+
+                        <ImageView
+                            android:id="@+id/ivEmail"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@color/colorPrimary"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_mail" />
+
+                        <View
+                            android:id="@+id/vEmail"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toRightOf="@id/ivEmail"
+                            android:background="@color/colorPrimary"
+                            android:rotation="45" />
+
+                        <!--app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"-->
+
+                        <EditText
+                            android:id="@+id/etEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_toRightOf="@id/vEmail"
+                            android:background="@android:color/white"
+                            android:hint="Email"
+                            android:paddingStart="10dp"
+                            android:paddingLeft="10dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rrREGNid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white">
+
+                        <ImageView
+                            android:id="@+id/ivPhn"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@color/colorPrimary"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_phn" />
+
+                        <View
+                            android:id="@+id/vPhn"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toRightOf="@id/ivPhn"
+                            android:background="@color/colorPrimary"
+                            android:rotation="45" />
+
+                        <!--app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"-->
+
+                        <EditText
+                            android:id="@+id/etPhn"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_toRightOf="@id/vPhn"
+                            android:background="@android:color/white"
+                            android:hint="Phone"
+                            android:inputType="number"
+                            android:maxLength="11"
+                            android:paddingStart="10dp"
+                            android:paddingLeft="10dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+
+                    </RelativeLayout>
+
+
+
+                    <RelativeLayout
+                        android:id="@+id/rrPassWord"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white">
+
+                        <ImageView
+                            android:id="@+id/ivpass"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@color/colorPrimary"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_lock" />
+
+                        <View
+                            android:id="@+id/vpass"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toRightOf="@id/ivpass"
+                            android:background="@color/colorPrimary"
+                            android:rotation="45" />
+
+                        <EditText
+                            android:id="@+id/etPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_toRightOf="@id/vpass"
+                            android:background="@android:color/white"
+                            android:hint="@string/password"
+                            android:inputType="textPassword"
+                            android:maxLength="12"
+                            android:paddingLeft="10dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+                        <ImageView
+                            android:id="@+id/ivpassShow"
+
+                            android:layout_width="40dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="-40dp"
+                            android:layout_toRightOf="@id/etPassword"
+                            android:background="@android:color/white"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_view"
+                            android:tint="@color/colorPrimaryDark" />
+
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:orientation="horizontal">
+
+                        <ProgressBar
+                            android:id="@+id/progressBar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:indeterminate="false"
+                            android:maxHeight="20dip"
+                            android:minHeight="20dip"
+                            android:progress="0" />
+
+                        <TextView
+                            android:id="@+id/password_strength"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Weak" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/login_instructions"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="password must be 6 charecter length" />
+
+                    <RelativeLayout
+                        android:id="@+id/rrConfirmPassWord"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white">
+
+                        <ImageView
+                            android:id="@+id/ivConfirmPassWord"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@color/colorPrimary"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_lock" />
+
+                        <View
+                            android:id="@+id/vConfirmPassWord"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toRightOf="@id/ivConfirmPassWord"
+                            android:background="@color/colorPrimary"
+                            android:rotation="45" />
+
+                        <EditText
+                            android:id="@+id/etConfirmPassWord"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_toRightOf="@id/vConfirmPassWord"
+                            android:background="@android:color/white"
+                            android:hint="Confirm Password"
+                            android:inputType="textPassword"
+                            android:maxLength="12"
+                            android:paddingStart="10dp"
+                            android:paddingLeft="10dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <Button
+                    android:id="@+id/btnNext1"
+                    android:text="Register"
+                    style="@style/BtnNext"
+                    android:layout_height="37dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
