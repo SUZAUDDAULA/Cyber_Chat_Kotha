@@ -90,12 +90,13 @@ public class LoginActivity extends AppCompatActivity {
 
                         SharedPrefManager.getInstance(LoginActivity.this).setLoggedIn(true);
                         Constants.callerId = SharedPrefManager.getInstance(LoginActivity.this).getUserID();
-                        Utilities.showLogcatMessage("  model " + response.body());
 
                         Toast.makeText(LoginActivity.this, "Successfully Logged in!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         finish();
-                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-
                     } else {
                         Toast.makeText(LoginActivity.this, "Invalid Credentials!", Toast.LENGTH_SHORT).show();
                     }

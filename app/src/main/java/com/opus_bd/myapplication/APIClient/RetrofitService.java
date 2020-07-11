@@ -12,10 +12,14 @@ import com.opus_bd.myapplication.Model.User.UserModel;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface RetrofitService {
@@ -53,6 +57,11 @@ public interface RetrofitService {
 
     @POST("Auth/Account/CChatRegister")
     Call<String> CChatRegister(@Body RegisterModel registerModel);
+
+    @Headers({"Accept: application/json"})
+    @Multipart
+    @POST("Auth/Account/CChatRegisterWithImage")
+    Call<String> CChatRegisterWithImage(@Part MultipartBody.Part file);
 
     @POST("Message/MessageBox/GroupCreate")
     Call<Integer> GroupCreate(@Body GroupPost groupPost);

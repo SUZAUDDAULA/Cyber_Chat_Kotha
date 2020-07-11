@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -31,13 +32,11 @@ public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.Tr
     private final Context context;
     private List<UserListModel> items;
     private List<UserListModel> userListModelFiltered;
-
     public MemberListAdapter(List<UserListModel> items, Context context) {
         this.items = items;
         this.context = context;
         this.userListModelFiltered = items;
     }
-
 
     @Override
     public TransactionViewHolder onCreateViewHolder(ViewGroup parent,
@@ -105,21 +104,15 @@ public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.Tr
                     // Utilities.showLogcatMessage(" USER ID" + item.getId());
                     intent.putExtra(ChatActivity.EXTRA_RECEIVER_NAME, item.getEmpName());
                     intent.putExtra(ChatActivity.EXTRA_RECEIVER_PHOTO, item.getDivisionName());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     context.startActivity(intent);
+
                 }
             });
-          /*  btnSendMessage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, ChatActivity.class);
-                    intent.putExtra(ChatActivity.EXTRA_RECEIVER_ID, item.getId());
-                    intent.putExtra(ChatActivity.EXTRA_RECEIVER_NAME, item.getName());
-                    context.startActivity(intent);
-                }
-            });*/
-
         }
     }
+
 
 
     @Override
@@ -139,6 +132,7 @@ public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.Tr
                         filteredList.add(item);
                     }
                 }
+                userListModelFiltered = filteredList;
             }
             FilterResults results = new FilterResults();
             results.values = filteredList;
@@ -151,12 +145,11 @@ public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.Tr
             notifyDataSetChanged();
         }
     };
-
+/*
     public void setFilter(ArrayList<UserListModel> newsArrayList) {
-        Utilities.showLogcatMessage("newuserlist= "+newsArrayList);
         userListModelFiltered.clear();
         userListModelFiltered.addAll(newsArrayList);
         notifyDataSetChanged();
-    }
+    }*/
 
 }

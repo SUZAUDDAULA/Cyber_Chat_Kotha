@@ -35,16 +35,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        intRecyclerView();
+        //intRecyclerView();
         getAllUser();
     }
-
-    public void intRecyclerView() {
-        memberListAdapter = new MemberListAdapter(UserListModel, this);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        rvUserList.setLayoutManager(layoutManager);
-        rvUserList.setAdapter(memberListAdapter);
-    }
+//
+//    public void intRecyclerView() {
+//        memberListAdapter = new MemberListAdapter(UserListModel, this);
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+//        rvUserList.setLayoutManager(layoutManager);
+//        rvUserList.setAdapter(memberListAdapter);
+//    }
 
 
     private void getAllUser() {

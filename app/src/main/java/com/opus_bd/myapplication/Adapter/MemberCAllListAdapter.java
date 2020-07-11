@@ -139,14 +139,15 @@ public class MemberCAllListAdapter extends RecyclerView.Adapter<MemberCAllListAd
         protected FilterResults performFiltering(CharSequence constraint) {
             List<UserListModel> filteredList = new ArrayList<>();
             if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(userListModelFiltered);
+                filteredList.addAll(items);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
-                for (UserListModel item : userListModelFiltered) {
+                for (UserListModel item : items) {
                     if (item.getEmpName().toLowerCase().contains(filterPattern) || item.getEmpCode().toLowerCase().contains(filterPattern) || item.getCompanyName().toLowerCase().contains(filterPattern)) {
                         filteredList.add(item);
                     }
                 }
+                userListModelFiltered = filteredList;
             }
             FilterResults results = new FilterResults();
             results.values = filteredList;
@@ -154,8 +155,8 @@ public class MemberCAllListAdapter extends RecyclerView.Adapter<MemberCAllListAd
         }
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            items.clear();
-            items.addAll((List) results.values);
+            userListModelFiltered.clear();
+            userListModelFiltered.addAll((List) results.values);
             notifyDataSetChanged();
         }
     };

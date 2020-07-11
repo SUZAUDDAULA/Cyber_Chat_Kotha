@@ -36,6 +36,7 @@ public class SharedPrefManager {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(KEY_USERNAME, UserName);
         editor.apply();
+
     }
 
     public String getUserName() {
@@ -60,103 +61,6 @@ public class SharedPrefManager {
                 Context.MODE_PRIVATE);
         return sharedPreferences.getString(KEY_USERMODEL, null);
     }
-
-
-   /* public void saveEmployeeModel(Employee userModel) {
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
-                Context.MODE_PRIVATE);
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(userModel);
-        editor.putString(KEY_EMPLOYEEMODEL, json);
-        editor.apply();
-    }*/
-
-/*    public String getEmployeeModel() {
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
-                Context.MODE_PRIVATE);
-        return sharedPreferences.getString(KEY_EMPLOYEEMODEL,null);
-    }*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*  public void clearToken() {
-          SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
-                  Context.MODE_PRIVATE);
-          sharedPreferences.edit().remove(KEY_TOKEN).apply();
-      }*/
-  /*  public void saveCart(ArrayList<AddtoCartModel> addtoCartModels) {
-        Gson gson = new Gson();
-        String tempOrders = gson.toJson(addtoCartModels);
-
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
-                Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(KEY_CARTS, tempOrders);
-        editor.apply();
-    }
-
-    public ArrayList<AddtoCartModel> getCart() {
-        List<AddtoCartModel> tempCart = new ArrayList<>();
-
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
-                Context.MODE_PRIVATE);
-
-        String stringOrders = sharedPreferences.getString(KEY_CARTS, null);
-        try {
-            Gson gson = new Gson();
-            AddtoCartModel[] addtoCartModels = gson.fromJson(stringOrders,
-                    AddtoCartModel[].class);
-
-            tempCart = Arrays.asList(addtoCartModels);
-            tempCart = new ArrayList<>(tempCart);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return (ArrayList<AddtoCartModel>) tempCart;
-    }
-
-    public void clearOrder() {
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
-                Context.MODE_PRIVATE);
-        sharedPreferences.edit().remove(KEY_CARTS).apply();
-    }
-
-    public void updateOrder(ArrayList<AddtoCartModel> checkOutModels) {
-        clearOrder();
-        Gson gson = new Gson();
-        String tempOrders = gson.toJson(checkOutModels);
-
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
-                Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(KEY_CARTS, tempOrders);
-        editor.apply();
-    }
-
-    public void removeCart(AddtoCartModel addtoCartModel) {
-
-        ArrayList<AddtoCartModel> addtoCartModels = getCart();
-
-        if (addtoCartModels != null) {
-            addtoCartModels.remove(addtoCartModel);
-            Utilities.showLogcatMessage(" Remove " + addtoCartModels.remove(addtoCartModel));
-            saveCart(addtoCartModels);
-        }
-
-    }*/
 
     public void saveUserId(String userId) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,

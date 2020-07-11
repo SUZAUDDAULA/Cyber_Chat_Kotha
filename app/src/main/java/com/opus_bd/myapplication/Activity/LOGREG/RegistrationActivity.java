@@ -29,6 +29,7 @@ import com.opus_bd.myapplication.Utils.SharedPrefManager;
 import com.opus_bd.myapplication.Utils.Utilities;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +37,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import kotlin.Unit;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -73,6 +77,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public Integer SELECTED_UNIT_ID,SELECTED_SUB_UNIT_ID=null;
     String selectOne,SELECTED_DESIGNATION_NAME="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -220,6 +225,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void addAllDesignationSpinnerData(final List<RankModel> body) {
+        Utilities.showLogcatMessage("RankModel= "+body.size());
         List<String> arrayList = new ArrayList<>();
         arrayList.add(0, "Select Rank");
         for (int i = 0; i < body.size(); i++) {
@@ -254,6 +260,8 @@ public class RegistrationActivity extends AppCompatActivity {
         if (!validatedForm())
             return;
         submitToServer();
+
+        //fileSubmit();
     }
 
 
@@ -350,6 +358,54 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
 
+    public void fileSubmit() {
+        //Create a file object using file path
+//        File files = new File(uri.getPath());
+//        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), files);
+//        MultipartBody.Part file = MultipartBody.Part.createFormData("file", files.getName(), requestFile);
+
+       File files = new File("");
+        // Create a request body with file and image media type
+        RequestBody fileReqBody = RequestBody.create(MediaType.parse("image/*"), files);
+        // Create MultipartBody.Part using file request-body,file name and part name
+        MultipartBody.Part file = MultipartBody.Part.createFormData("file", files.getName(), fileReqBody);
+
+
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<String> registrationRequest = retrofitService.CChatRegisterWithImage(file);
+        registrationRequest.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                try {
+                    if (response.body() != null) {
+                        try {
+                            Toast.makeText(RegistrationActivity.this, response.body(), Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            Utilities.showLogcatMessage("Exception 1" + e.toString());
+                            Toast.makeText(RegistrationActivity.this, "Something went Wrong! Please try again later", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    } else {
+                        Toast.makeText(RegistrationActivity.this, "Invalid Credentials!", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage("Exception 2" + e.toString());
+                    Toast.makeText(RegistrationActivity.this, "Something went Wrong! Please try again later", Toast.LENGTH_SHORT).show();
+                }
+                //            showProgressBar(false);
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Utilities.showLogcatMessage("Fail to connect " + t.toString());
+                // Utilities.hideProgress(LoginActivity.this);
+                Toast.makeText(RegistrationActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
@@ -362,6 +418,7 @@ public class RegistrationActivity extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 Uri resultUri = result.getUri();
+                //uri=resultUri;
                 ivProfilePic.setImageURI(resultUri);
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {

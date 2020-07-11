@@ -1,6 +1,9 @@
 
 package com.opus_bd.myapplication.Model.User;
 
+import android.app.Instrumentation;
+
+import com.google.android.gms.common.server.converter.StringToIntConverter;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -32,5 +35,12 @@ public class RankModel {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "RankModel{" +
+                "vehicleType='" + vehicleType + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
 
 }

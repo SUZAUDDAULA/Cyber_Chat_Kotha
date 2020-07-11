@@ -145,4 +145,12 @@ public class HomeActivity extends VoiceCallBaseActivity implements SinchService.
                 return super.onOptionsItemSelected(item);
         }
     }
+//
+//    @Override
+//    public void onBackPressed() {
+//        Intent intent = new Intent(this, HomeActivity.class);
+//        startActivity(intent);
+//        finish();
+//        super.onBackPressed();
+//    }
 }

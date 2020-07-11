@@ -2,7 +2,11 @@ package com.opus_bd.myapplication.Activity.Fargment;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,14 +16,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.opus_bd.myapplication.APIClient.RetrofitClientInstance;
 import com.opus_bd.myapplication.APIClient.RetrofitService;
+import com.opus_bd.myapplication.Activity.HomeActivity;
+import com.opus_bd.myapplication.Activity.LoginActivity;
 import com.opus_bd.myapplication.Adapter.MemberListAdapter;
 import com.opus_bd.myapplication.Model.User.UserListModel;
 import com.opus_bd.myapplication.R;
@@ -41,7 +51,6 @@ public class ChatFragment extends Fragment {
     MemberListAdapter memberListAdapter;
     ArrayList<UserListModel> userListModelArrayList = new ArrayList<>();
     private SearchView searchView = null;
-    private SearchView.OnQueryTextListener queryTextListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,6 +98,37 @@ public class ChatFragment extends Fragment {
         });
 
     }
+/*
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.home_menu, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = new SearchView(((HomeActivity) getContext()).getSupportActionBar().getThemedContext());
+        MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+          MenuItemCompat.setActionView(item, searchView);
+        // These lines are deprecated in API 26 use instead
+        */
+/*item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        item.setActionView(searchView);*//*
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                memberListAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+
+    }
+
+*/
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -101,30 +141,13 @@ public class ChatFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //memberListAdapter.getFilter().filter(query);
+                memberListAdapter.getFilter().filter(query);
                 return false;
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (newText == null || newText.trim().isEmpty()) {
-                    memberListAdapter.setFilter(userListModelArrayList);
-                    return false;
-                }
-                else {
-                    newText = newText.toLowerCase();
-                    final ArrayList<UserListModel> filteredNewsList = new ArrayList<>();
-                    for (UserListModel model : userListModelArrayList) {
-                        final String empName = model.getEmpName().toLowerCase();
-                        if ((empName.contains(newText))) {
-                            filteredNewsList.add(model);
-                        }
-                    }
-                    memberListAdapter.setFilter(filteredNewsList);
-                    return false;
-                }
-
-               /* memberListAdapter.getFilter().filter(newText);
-                return false;*/
+                memberListAdapter.getFilter().filter(newText);
+                return false;
             }
 
         });
