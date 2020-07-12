@@ -1,15 +1,14 @@
 package com.opus_bd.myapplication.Utils;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.opus_bd.myapplication.Model.User.UserModel;
-
 public class SharedPrefManager {
     public static final String LOGGED_IN_PREF = "logged_in_status";
     private static final String SHARED_PREF_NAME = "MessageBOx";
     private static final String KEY_CARTS = "cart";
+    private static final String IS_USER_LOGIN = "is_user_login";
     private static final String KEY_USERNAME = "UserName";
     private static final String KEY_USERID = "UserID";
     private static final String KEY_USERMODEL = "UserModel";
@@ -120,8 +119,6 @@ public class SharedPrefManager {
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(LOGGED_IN_PREF).apply();
-
-
     }
 
     /**
@@ -134,5 +131,28 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
                 Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean(LOGGED_IN_PREF, false);
+    }
+
+    public void setIsUserLogin(boolean b) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(IS_USER_LOGIN, b);
+        editor.apply();
+    }
+    
+    public boolean getISUserLogin(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
+                Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean(LOGGED_IN_PREF, false);
+    }
+
+    public void clearAll() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
+                Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
     }
 }

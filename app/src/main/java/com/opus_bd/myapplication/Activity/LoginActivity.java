@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -88,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPrefManager.getInstance(LoginActivity.this).saveUserModel(response.body());
                         SharedPrefManager.getInstance(LoginActivity.this).saveUserId(response.body().getId());
 
+                        SharedPrefManager.getInstance(LoginActivity.this).setIsUserLogin(true);
                         SharedPrefManager.getInstance(LoginActivity.this).setLoggedIn(true);
                         Constants.callerId = SharedPrefManager.getInstance(LoginActivity.this).getUserID();
 

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.opus_bd.myapplication.R;
+import com.opus_bd.myapplication.Utils.SharedPrefManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,12 +35,22 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-                Intent i = new Intent(SplashActivity.this, LoginActivity.class);
-                startActivity(i);
+                if(SharedPrefManager.getInstance(SplashActivity.this).getISUserLogin()==true){
+
+                    Intent i = new Intent(SplashActivity.this, HomeActivity.class);
+                    startActivity(i);
+                    // close this activity
+                    finish();
+                }else {
+
+                    Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(i);
 
 
-                // close this activity
-                finish();
+                    // close this activity
+                    finish();
+                }
+
 
 
             }
