@@ -145,11 +145,6 @@ public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.Tr
             notifyDataSetChanged();
         }
     };
-/*
-    public void setFilter(ArrayList<UserListModel> newsArrayList) {
-        userListModelFiltered.clear();
-        userListModelFiltered.addAll(newsArrayList);
-        notifyDataSetChanged();
-    }*/
+
 
 }
