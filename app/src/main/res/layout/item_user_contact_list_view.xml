@@ -75,7 +75,7 @@
                             android:layout_marginEnd="@dimen/spacing_middle"
                             android:layout_marginRight="@dimen/spacing_middle"
                             android:maxLines="2"
-                            android:text="dummy "
+                            android:text="10:30pm "
 
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
                             android:textColor="@color/grey_40" />
@@ -85,17 +85,6 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvdatetime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_margin="@dimen/spacing_mlarge"
-                    android:text="10:30 AM"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="12sp" />
-
 
             </LinearLayout>
 
@@ -104,6 +93,8 @@
                 android:layout_height="1dp"
                 android:background="@color/grey_10" />
         </LinearLayout>
+
+
     </LinearLayout>
 
 </com.balysv.materialripple.MaterialRippleLayout>

@@ -2,6 +2,7 @@ package com.opus_bd.myapplication.APIClient;
 
 
 import com.opus_bd.myapplication.Model.Group.GroupPost;
+import com.opus_bd.myapplication.Model.User.ContactConnectModel;
 import com.opus_bd.myapplication.Model.User.RankModel;
 import com.opus_bd.myapplication.Model.User.RegisterModel;
 import com.opus_bd.myapplication.Model.User.SubUnitsModel;
@@ -30,6 +31,12 @@ public interface RetrofitService {
     @GET("api/Message/GetEmployeeInfoExceptMe/{userId}")
     Call<List<UserListModel>> GetEmployeeInfoExceptMe(@Path("userId") int userId);
 
+    @GET("api/Message/GetConnectedEmployeeInfoExceptMe/{id}/{contactType}")
+    Call<List<UserListModel>> GetConnectedEmployeeInfoExceptMe(@Path("id") int userId,@Path("contactType") String contactType);
+
+    @GET("api/Message/GetContactConnectionLog/{id}/{contactType}/{trType}")
+    Call<List<ContactConnectModel>> GetContactConnectionLog(@Path("id") int userId, @Path("contactType") String contactType, @Path("trType") String trType);
+
     @GET("api/Message/GetGroupsForMe/{userId}")
     Call<List<UserModel>> GetGroupsForMe(@Path("userId") int userId);
 
@@ -42,6 +49,9 @@ public interface RetrofitService {
 
     @GET("api/Message/GetAllEmployeesNotInGroupBygrpId/{groupId}")
     Call<List<UserModel>> GetAllEmployeesNotInGroupBygrpId(@Path("groupId") int groupId);
+
+    @POST("api/Auth/Account/NewContactConnection/{userId}/{contactId}/{contactType}")
+    Call<String> NewContactConnection(@Path("userId") int userId,@Path("contactId") int contactId,@Path("contactType") String contactType);
 
     @GET("api/Message/GetAllMessageGroup")
     Call<List<UserModel>> GetAllMessageGroup();

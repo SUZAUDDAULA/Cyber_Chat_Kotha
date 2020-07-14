@@ -53,7 +53,7 @@
         app:layout_constraintTop_toBottomOf="@id/llSearch"  />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-
+        android:id="@+id/fabcal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_large"

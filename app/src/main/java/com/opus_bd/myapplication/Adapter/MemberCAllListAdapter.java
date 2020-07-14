@@ -2,6 +2,7 @@ package com.opus_bd.myapplication.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.opus_bd.myapplication.Activity.ChatActivity;
+import com.opus_bd.myapplication.Model.User.ContactConnectModel;
 import com.opus_bd.myapplication.Model.User.UserListModel;
 import com.opus_bd.myapplication.R;
 import com.opus_bd.myapplication.Utils.Constants;
@@ -34,10 +36,10 @@ import butterknife.ButterKnife;
 
 public class MemberCAllListAdapter extends RecyclerView.Adapter<MemberCAllListAdapter.TransactionViewHolder>  implements Filterable {
     private final Context context;
-    private List<UserListModel> items;
-    private List<UserListModel> userListModelFiltered;
+    private List<ContactConnectModel> items;
+    private List<ContactConnectModel> userListModelFiltered;
 
-    public MemberCAllListAdapter(List<UserListModel> items, Context context) {
+    public MemberCAllListAdapter(List<ContactConnectModel> items, Context context) {
         this.items = items;
         this.context = context;
         this.userListModelFiltered = items;
@@ -56,7 +58,7 @@ public class MemberCAllListAdapter extends RecyclerView.Adapter<MemberCAllListAd
 
     @Override
     public void onBindViewHolder(TransactionViewHolder holder, int position) {
-        UserListModel item = items.get(position);
+        ContactConnectModel item = items.get(position);
         holder.set(item);
     }
 
@@ -80,24 +82,25 @@ public class MemberCAllListAdapter extends RecyclerView.Adapter<MemberCAllListAd
         LinearLayout rootLayout;
         @BindView(R.id.description)
         TextView description;
-
+        @BindView(R.id.tvctime)
+        TextView tvctime;
 
         public TransactionViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        public void set(final UserListModel item) {
+        public void set(final ContactConnectModel item) {
             //UI setting code
-            description.setText(String.valueOf(item.getCompanyName()));
+            description.setText(String.valueOf(item.getDesignationName()));
             tvProfileName.setText(String.valueOf(item.getEmpName()));
-
+            tvctime.setText(String.valueOf(item.getLastContactTime()));
             try {
                 Glide.with(context)
                         .applyDefaultRequestOptions(new RequestOptions()
                                 .placeholder(R.drawable.ic_person)
                                 .error(R.drawable.ic_person))
-                        .load(Constants.BASE_URL + item.getDivisionName())
+                        .load(Constants.BASE_URL + item.getImagePath())
                         .into(ivUserImage);
             } catch (Exception e) {
             }
@@ -106,11 +109,12 @@ public class MemberCAllListAdapter extends RecyclerView.Adapter<MemberCAllListAd
             rootLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Constants.CONTACT_TYPE="call";
                     Intent intent = new Intent(context, ChatActivity.class);
                     intent.putExtra(ChatActivity.EXTRA_RECEIVER_ID, item.getEmployeeId());
-                    Utilities.showLogcatMessage(" USER ID" + item.getId());
                     intent.putExtra(ChatActivity.EXTRA_RECEIVER_NAME, item.getEmpName());
-                    intent.putExtra(ChatActivity.EXTRA_RECEIVER_PHOTO, item.getDivisionName());
+                    intent.putExtra(ChatActivity.EXTRA_RECEIVER_PHOTO, item.getImagePath());
+                    intent.putExtra(ChatActivity.IS_EXIST, "yes");
                     context.startActivity(intent);
                 }
             });
@@ -137,13 +141,13 @@ public class MemberCAllListAdapter extends RecyclerView.Adapter<MemberCAllListAd
     private Filter exampleFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<UserListModel> filteredList = new ArrayList<>();
+            List<ContactConnectModel> filteredList = new ArrayList<>();
             if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(items);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
-                for (UserListModel item : items) {
-                    if (item.getEmpName().toLowerCase().contains(filterPattern) || item.getEmpCode().toLowerCase().contains(filterPattern) || item.getCompanyName().toLowerCase().contains(filterPattern)) {
+                for (ContactConnectModel item : items) {
+                    if (item.getEmpName().toLowerCase().contains(filterPattern) || item.getEmpCode().toLowerCase().contains(filterPattern) || item.getDesignationName().toLowerCase().contains(filterPattern)) {
                         filteredList.add(item);
                     }
                 }

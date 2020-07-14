@@ -33,25 +33,37 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.opus_bd.myapplication.APIClient.RetrofitClientInstance;
+import com.opus_bd.myapplication.APIClient.RetrofitService;
 import com.opus_bd.myapplication.Activity.Call.PlaceCallActivity;
+import com.opus_bd.myapplication.Activity.LOGREG.RegistrationActivity;
 import com.opus_bd.myapplication.Adapter.ChatAdapter;
 import com.opus_bd.myapplication.Model.IndividualChatModel;
 import com.opus_bd.myapplication.R;
 import com.opus_bd.myapplication.Utils.Constants;
 import com.opus_bd.myapplication.Utils.SharedPrefManager;
+import com.opus_bd.myapplication.Utils.Utilities;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChatActivity extends AppCompatActivity {
 
     public static final String EXTRA_RECEIVER_ID = "extra_receiver_id";
     public static final String EXTRA_RECEIVER_NAME = "extra_receiver_NAME";
     public static final String EXTRA_RECEIVER_PHOTO = "extra_receiver_Photo";
+    public static final String IS_EXIST = "is_exist";
     @BindView(R.id.rvChats)
     RecyclerView rvChats;
     @BindView(R.id.ivEmoji)
@@ -72,7 +84,7 @@ public class ChatActivity extends AppCompatActivity {
     FloatingActionButton fabSent;
     ArrayList<IndividualChatModel> individualChatModels = new ArrayList<>();
     int receiverId;
-    String name, photo;
+    String name, photo,contacttype,is_exist;
     private ChatAdapter chatAdapter;
 
     @Override
@@ -88,7 +100,12 @@ public class ChatActivity extends AppCompatActivity {
             receiverId = bundle.getInt(EXTRA_RECEIVER_ID);
             name = bundle.getString(EXTRA_RECEIVER_NAME);
             photo = bundle.getString(EXTRA_RECEIVER_PHOTO);
-
+            photo = bundle.getString(EXTRA_RECEIVER_PHOTO);
+            is_exist = bundle.getString(IS_EXIST);
+            contacttype=Constants.CONTACT_TYPE;
+            if(is_exist.equals("no")){
+                submitContact();
+            }
         }
         tvProfileName.setText(name);
         try {
@@ -308,6 +325,35 @@ public class ChatActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+
+    public void submitContact() {
+        int userId = Integer.parseInt(SharedPrefManager.getInstance(this).getUserID());
+        int contactId=receiverId;
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<String> registrationRequest = retrofitService.NewContactConnection(userId,contactId,contacttype);
+        registrationRequest.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                try {
+                    if (response.body() != null) {
+
+                    } else {
+
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage("Exception 2" + e.toString());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Utilities.showLogcatMessage("Fail to connect " + t.toString());
+
+            }
+        });
     }
 
     @Override

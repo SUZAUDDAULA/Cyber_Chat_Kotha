@@ -24,6 +24,7 @@ public class Constants {
     public static final String SENDER_ID = "senderID";
     public static final String MESSAGE = "message";
     public static final String DETAILS_MESSAGE = "detailmessage";
+    public static String CONTACT_TYPE = "";
     // Attendance Constants
     public static final int CHECK_IN = 1;
     public static final int CHECK_OUT = 2;

@@ -23,12 +23,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.EmoActivity"></activity>
+        <activity android:name=".Activity.ContactActivity"
+            android:theme="@style/NoActionBar"/>
+        <activity android:name=".Activity.EmoActivity" />
         <activity android:name=".Activity.Call.PlaceCallActivity" />
         <activity android:name=".Activity.Call.CallScreenActivity" />
         <activity android:name=".Activity.Call.IncomingCallScreenActivity" />
         <activity android:name=".Activity.LOGREG.RegisterSuccessActivity" />
         <activity android:name=".Activity.LOGREG.RegistrationActivity" />
+
         <service android:name=".Activity.Call.SinchService" />
 
         <activity
@@ -36,22 +39,18 @@
             android:theme="@style/NoActionBar" />
         <activity android:name=".Activity.Call.CallActivity" />
         <activity android:name=".Activity.GroupActivity" />
-        <activity android:name=".Activity.LoginActivity">
-
-        </activity>
+        <activity android:name=".Activity.LoginActivity"></activity>
         <activity android:name=".Activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".Activity.MainActivity" />
         <activity
             android:name=".Activity.ChatActivity"
             android:theme="@style/NoActionBar" />
-
         <activity android:name=".Activity.VoiceCall.CallActivity" />
         <activity android:name=".Activity.VoiceCall.PlaceCallActivity" />
         <activity android:name=".Activity.VoiceCall.BaseActivity" />
